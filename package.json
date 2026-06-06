@@ -1,5 +1,5 @@
 {
-  "name": "@glade.chat/glade.js",
+  "name": "@glade-chat/glade.js",
   "version": "0.1.0",
   "description": "A powerful Node.js library for interacting with the Glade (glade.chat) API and real-time gateway.",
   "type": "module",

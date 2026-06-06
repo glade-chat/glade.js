@@ -26,7 +26,7 @@ import { decodeJwt, generateNonce } from '../util/Util.js';
  * listeners, then call {@link Client#login}.
  *
  * @example
- * import { Client, Events } from 'glade.js';
+ * import { Client, Events } from '@glade-chat/glade.js';
  * const client = new Client();
  * client.on(Events.Ready, () => console.log(`Logged in as ${client.user.handle}`));
  * client.on(Events.MessageCreate, (msg) => {
