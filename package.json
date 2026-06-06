@@ -1,0 +1,54 @@
+{
+  "name": "glade.js",
+  "version": "0.1.0",
+  "description": "A powerful Node.js library for interacting with the Glade (glade.chat) API and real-time gateway.",
+  "type": "module",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./src/index.js",
+      "default": "./src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "types",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "scripts": {
+    "lint": "node --check src/index.js",
+    "example": "node examples/index.js"
+  },
+  "keywords": [
+    "glade",
+    "glade.chat",
+    "glade.js",
+    "chat",
+    "bot",
+    "api",
+    "socket.io",
+    "client",
+    "library"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io-client": "^4.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glade-chat/glade.js.git"
+  },
+  "homepage": "https://glade.chat",
+  "bugs": {
+    "url": "https://github.com/glade-chat/glade.js/issues"
+  }
+}
