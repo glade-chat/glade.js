@@ -4,9 +4,9 @@
 
 A powerful, fully-typed Node.js library for the [Glade](https://glade.chat) API and real-time gateway.
 
-[![npm version](https://img.shields.io/npm/v/glade.js.svg?maxAge=3600)](https://www.npmjs.com/package/glade.js)
-[![npm downloads](https://img.shields.io/npm/dt/glade.js.svg?maxAge=3600)](https://www.npmjs.com/package/glade.js)
-[![license](https://img.shields.io/npm/l/glade.js.svg?maxAge=3600)](./LICENSE)
+[![npm version](https://img.shields.io/npm/v/@glade.chat/glade.js.svg?maxAge=3600)](https://www.npmjs.com/package/@glade.chat/glade.js)
+[![npm downloads](https://img.shields.io/npm/dt/@glade.chat/glade.js.svg?maxAge=3600)](https://www.npmjs.com/package/@glade.chat/glade.js)
+[![license](https://img.shields.io/npm/l/@glade.chat/glade.js.svg?maxAge=3600)](./LICENSE)
 
 </div>
 
@@ -26,13 +26,13 @@ real-time gateway.
 **Node.js 18.17 or newer is required.**
 
 ```bash
-npm install glade.js
+npm install @glade.chat/glade.js
 ```
 
 ## Example usage
 
 ```js
-import { Client, Events } from 'glade.js';
+import { Client, Events } from '@glade.chat/glade.js';
 
 const client = new Client();
 

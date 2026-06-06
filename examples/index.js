@@ -3,7 +3,7 @@
  *
  * Replies "Pong! 🌿" to `!ping`, and echoes `!say <text>`.
  */
-import { Client, Events } from 'glade.js';
+import { Client, Events } from '@glade.chat/glade.js';
 
 const client = new Client();
 
