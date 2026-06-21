@@ -12,14 +12,13 @@ A powerful, fully-typed Node.js library for the [Glade](https://glade.chat) API 
 
 ## About
 
-glade.js is an object-oriented library that makes it easy to interact with Glade — Houses,
-Rooms, Messages, Members, Roles, DMs, friends, presence, and voice — over REST and the
+glade.js is an object-oriented library that makes it easy to interact with Glade - Houses,
+Rooms, Messages, Members, Roles, DMs, friends, presence, and voice - over REST and the
 real-time gateway.
 
 - Object-oriented
 - Cache-backed and event-driven
 - Handles login and token refresh for you
-- First-class TypeScript types, zero build step (pure ESM)
 
 ## Installation
 
