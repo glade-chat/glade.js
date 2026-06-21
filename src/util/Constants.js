@@ -18,6 +18,11 @@ export const DefaultOptions = {
    * Keeps a long-running gateway connection authenticated.
    */
   refreshSkewMs: 60_000,
+  /**
+   * How often (ms) to send a presence heartbeat so the server keeps the
+   * connection marked online. Must stay below the server's liveness TTL.
+   */
+  heartbeatMs: 30_000,
   /** Whether to cache structures received from REST and the gateway. */
   cache: true,
   /**
@@ -132,6 +137,7 @@ export const GatewayCommand = {
   TypingStart: 'typing:start',
   TypingStop: 'typing:stop',
   PresenceSet: 'presence:set',
+  PresenceHeartbeat: 'presence:heartbeat',
   VoiceJoin: 'voice:join',
   VoiceLeave: 'voice:leave',
   VoiceSync: 'voice:sync',

@@ -83,6 +83,7 @@ export class Client extends EventEmitter {
       onDisconnect: (reason) => this.emit(Events.Disconnect, reason),
       onError: (err) => this.#emitError(err),
       ws: this.options.ws,
+      heartbeatMs: this.options.heartbeatMs,
       debug,
     });
 

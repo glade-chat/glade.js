@@ -51,6 +51,8 @@ export interface ClientOptions {
   autoRefresh?: boolean;
   /** Ms before token expiry to refresh proactively. Default `60000`. */
   refreshSkewMs?: number;
+  /** Presence heartbeat interval in ms; keeps the connection marked online. Default `30000`. */
+  heartbeatMs?: number;
   /** Cache structures from REST/gateway. Default `true`. */
   cache?: boolean;
   /** Auto-subscribe to cached rooms' realtime events on ready. Default `true`. */
@@ -232,6 +234,7 @@ export class Gateway {
     debug?: (msg: string) => void;
     ws?: Record<string, unknown>;
     maxHandshakeRefresh?: number;
+    heartbeatMs?: number;
   });
   socket: Socket | null;
   id: string | null;

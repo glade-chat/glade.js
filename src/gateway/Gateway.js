@@ -21,6 +21,7 @@ export class Gateway {
    * @param {(err: Error) => void} [opts.onError]
    * @param {(msg: string) => void} [opts.debug]
    * @param {object} [opts.ws] Extra socket.io-client options.
+   * @param {number} [opts.heartbeatMs] Presence heartbeat interval; <=0 disables it.
    */
   constructor(opts) {
     this.url = opts.url;
@@ -42,6 +43,10 @@ export class Gateway {
     this._handshakeRefreshAttempts = 0;
     /** Cap on consecutive handshake refreshes to avoid a reconnect loop. */
     this._maxHandshakeRefresh = opts.maxHandshakeRefresh ?? 5;
+    /** Presence heartbeat interval (ms); the server offlines us without it. */
+    this._heartbeatMs = opts.heartbeatMs ?? 30_000;
+    /** @type {ReturnType<typeof setInterval> | null} */
+    this._heartbeatTimer = null;
   }
 
   /** Whether the underlying socket is currently connected. */
@@ -71,11 +76,13 @@ export class Gateway {
       this.id = this.socket.id;
       this._handshakeRefreshAttempts = 0;
       this.#debug(`Connected (socket ${this.id})`);
+      this.#startHeartbeat();
       this.onConnect();
     });
 
     this.socket.on('disconnect', (reason) => {
       this.#debug(`Disconnected: ${reason}`);
+      this.#stopHeartbeat();
       this.onDisconnect(reason);
     });
 
@@ -113,10 +120,29 @@ export class Gateway {
 
   /** Closes the gateway connection. */
   disconnect() {
+    this.#stopHeartbeat();
     if (this.socket) {
       this.socket.disconnect();
       this.socket = null;
       this.id = null;
+    }
+  }
+
+  /** Periodically tell the server we're alive so it keeps us marked online. */
+  #startHeartbeat() {
+    this.#stopHeartbeat();
+    if (!(this._heartbeatMs > 0)) return;
+    this._heartbeatTimer = setInterval(() => {
+      if (this.socket?.connected) this.socket.emit('presence:heartbeat');
+    }, this._heartbeatMs);
+    // Don't let the heartbeat keep the process alive on its own.
+    if (typeof this._heartbeatTimer.unref === 'function') this._heartbeatTimer.unref();
+  }
+
+  #stopHeartbeat() {
+    if (this._heartbeatTimer) {
+      clearInterval(this._heartbeatTimer);
+      this._heartbeatTimer = null;
     }
   }
 
