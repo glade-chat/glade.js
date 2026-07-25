@@ -3,6 +3,8 @@
 import { io } from 'socket.io-client';
 import { GladeGatewayError } from '../errors/index.js';
 
+export const GATEWAY_PATH = '/gateway';
+
 /**
  * The realtime layer of glade.js: a thin wrapper around a Socket.IO client
  * connection to the Glade gateway. It authenticates the handshake with the
@@ -66,6 +68,7 @@ export class Gateway {
 
     this.#debug(`Connecting to ${this.url}`);
     this.socket = io(this.url, {
+      path: GATEWAY_PATH,
       autoConnect: false,
       withCredentials: true,
       auth: (cb) => cb({ token: this.getToken() }),
